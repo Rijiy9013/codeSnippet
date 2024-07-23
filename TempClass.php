@@ -366,7 +366,7 @@ class SyncJob implements ShouldQueue
 
             $queryCreateTable .= "\"$columnName\" $dataType";
 
-            if ($column->is_nullable === 'YES') {
+            if (strtolower($column->is_nullable) === 'yes') {
                 $queryCreateTable .= ' NULL';
             } else {
                 $queryCreateTable .= ' NOT NULL';
@@ -376,7 +376,7 @@ class SyncJob implements ShouldQueue
                 $queryCreateTable .= " DEFAULT $column->column_default";
             }
 
-            if ($columnName === 'id') {
+            if (strtolower($columnName) === 'id') {
                 $primaryKey = "\"$columnName\"";
             }
 
